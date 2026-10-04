@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="si">
 <head>
@@ -113,4 +114,121 @@ setInterval(()=>{
 },20);
 </script>
 </body>
+=======
+<!DOCTYPE html>
+<html lang="si">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BEN 10 ULTIMATE GAME</title>
+<style>
+  body{margin:0;background:#000;color:#0f0;font-family:'Courier New',monospace;text-align:center;overflow:hidden;}
+  h1{color:#00ff00;text-shadow:0 0 10px #00ff00;margin:5px;}
+  #game{position:relative;width:380px;height:550px;margin:5px auto;background:linear-gradient(#001100,#003300);border:3px solid #00ff00;border-radius:15px;overflow:hidden;box-shadow:0 0 20px #00ff00;}
+  #player{position:absolute;width:60px;height:60px;bottom:20px;left:160px;font-size:50px;transition:0.1s;z-index:10;}
+ .alien{position:absolute;width:50px;height:50px;font-size:40px;top:-60px;}
+ .omni{position:absolute;width:40px;height:40px;font-size:30px;top:-50px;background:radial-gradient(#00ff00,#004400);border-radius:50%;border:2px solid white;box-shadow:0 0 15px #00ff00;}
+  #omnitrix{width:80px;height:80px;margin:10px auto;background:#222;border-radius:50%;border:4px solid #00ff00;display:flex;align-items:center;justify-content:center;font-size:40px;cursor:pointer;box-shadow:0 0 20px #00ff00;transition:0.2s;}
+  #omnitrix:active{transform:scale(0.9);background:#00ff00;}
+  #ui{display:flex;justify-content:space-around;font-weight:bold;font-size:18px;}
+  #trans{font-size:14px;color:yellow;height:20px;}
+</style>
+</head>
+<body>
+<h1>👽 BEN 10 - OMNITRIX POWER 👽</h1>
+<div id="ui">
+  <div>SCORE: <span id="score">0</span></div>
+  <div>ALIEN: <span id="alienName">BEN</span></div>
+</div>
+<div id="trans">Omnitrix එක ඔබලා Transform වෙන්න!</div>
+
+<div id="game">
+  <div id="player">🧑</div>
+</div>
+
+<div id="omnitrix">⌚</div>
+<p>⬅️➡️ යන්න | Omnitrix එකෙන් Transform!</p>
+
+<script>
+const player=document.getElementById('player');
+const game=document.getElementById('game');
+const scoreEl=document.getElementById('score');
+const alienNameEl=document.getElementById('alienName');
+const transEl=document.getElementById('trans');
+const omnitrix=document.getElementById('omnitrix');
+
+let px=160, score=0, isAlien=false, alienTime=0;
+let aliens=[
+  {emoji:'🔥',name:'HEATBLAST'},{emoji:'💎',name:'DIAMONDHEAD'},
+  {emoji:'👽',name:'FOUR ARMS'},{emoji:'⚡',name:'XL R8'},{emoji:'🌊',name:'WATER HAZARD'}
+];
+let currentAlien=0;
+
+function move(dir){
+  if(dir=='left' && px>10) px-=20;
+  if(dir=='right' && px<310) px+=20;
+  player.style.left=px+'px';
+}
+document.addEventListener('keydown',e=>{
+  if(e.key=='ArrowLeft') move('left');
+  if(e.key=='ArrowRight') move('right');
+  if(e.key==' ') transform();
+});
+
+omnitrix.addEventListener('click',transform);
+
+function transform(){
+  isAlien=true; alienTime=300; // තත් 5ක් Alien
+  currentAlien=Math.floor(Math.random()*aliens.length);
+  player.innerHTML=aliens[currentAlien].emoji;
+  alienNameEl.innerText=aliens[currentAlien].name;
+  transEl.innerText='🔥 TRANSFORMED TO '+aliens[currentAlien].name+'! 🔥';
+  omnitrix.style.background='#00ff00';
+  omnitrix.innerHTML=aliens[currentAlien].emoji;
+  setTimeout(()=>{omnitrix.style.background='#222';},200);
+}
+
+// Enemy / Power
+function spawn(){
+  let el=document.createElement('div');
+  let isPower=Math.random()>0.7;
+  el.className=isPower?'omni':'alien';
+  el.innerHTML=isPower?'⌚':['👾','🤖','💀'][Math.floor(Math.random()*3)];
+  el.style.left=Math.random()*330+'px';
+  game.appendChild(el);
+  let top=-60;
+  let fall=setInterval(()=>{
+    top+= isAlien?6:3;
+    el.style.top=top+'px';
+    // Collision
+    if(top>460 && top<540 && Math.abs(parseInt(el.style.left)-px)<45){
+      if(isPower){
+        score+=50; transEl.innerText='OMNITRIX POWER +50!';
+        transform();
+      }else{
+        if(isAlien){ score+=20; } // Alien නම් විනාශයි
+        else { alert('💀 VILGAX WINS! Score: '+score); location.reload(); return; }
+      }
+      el.remove(); clearInterval(fall);
+      scoreEl.innerText=score;
+    }
+    if(top>560){ el.remove(); clearInterval(fall); }
+  },20);
+}
+
+setInterval(spawn,600);
+
+// Alien timer
+setInterval(()=>{
+  if(isAlien){
+    alienTime--;
+    if(alienTime<=0){
+      isAlien=false; player.innerHTML='🧑'; alienNameEl.innerText='BEN';
+      transEl.innerText='Omnitrix Recharging...';
+    }
+  }
+},20);
+</script>
+</body>
+>>>>>>> eeda5339eca485cee3487183f089bb2b5b457d2e
 </html>

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="si">
 <head>
@@ -71,4 +72,79 @@
 </script>
 
 </body>
+=======
+<!DOCTYPE html>
+<html lang="si">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Podi Game Eka</title>
+<style>
+  body { 
+    background: #1a1a2e; color: white; font-family: sans-serif; 
+    text-align: center; overflow: hidden; margin: 0; height: 100vh;
+  }
+  h1 { margin-top: 20px; }
+  #gameArea {
+    width: 90%; max-width: 500px; height: 400px;
+    background: #16213e; border: 3px solid #0f3460;
+    margin: 20px auto; position: relative; border-radius: 15px;
+  }
+  #box {
+    width: 60px; height: 60px; background: #e94560;
+    position: absolute; border-radius: 10px; cursor: pointer;
+    transition: all 0.2s; display: flex; align-items: center; justify-content: center;
+    font-size: 30px;
+  }
+  #score { font-size: 24px; font-weight: bold; }
+</style>
+</head>
+<body>
+
+<h1>Box එක අල්ලන්න! 📦</h1>
+<p id="score">Score: 0</p>
+<p>තත් 30 ඇතුලත කීයක් අල්ලන්න පුලුවන්ද බලන්න!</p>
+
+<div id="gameArea">
+  <div id="box">👆</div>
+</div>
+
+<script>
+  let score = 0;
+  let timeLeft = 30;
+  const box = document.getElementById('box');
+  const scoreText = document.getElementById('score');
+  const gameArea = document.getElementById('gameArea');
+
+  function moveBox() {
+    const x = Math.random() * (gameArea.clientWidth - 60);
+    const y = Math.random() * (gameArea.clientHeight - 60);
+    box.style.left = x + 'px';
+    box.style.top = y + 'px';
+  }
+
+  box.addEventListener('click', () => {
+    score++;
+    scoreText.innerText = 'Score: ' + score;
+    moveBox();
+  });
+
+  moveBox();
+
+  // තත් 30න් Game එක ඉවරයි
+  setInterval(() => {
+    if(timeLeft > 0) {
+      timeLeft--;
+      if(timeLeft == 0) {
+        alert('Game Over! ඔයාගේ Score එක: ' + score);
+        score = 0;
+        timeLeft = 30;
+        scoreText.innerText = 'Score: 0';
+      }
+    }
+  }, 1000);
+</script>
+
+</body>
+>>>>>>> eeda5339eca485cee3487183f089bb2b5b457d2e
 </html>
