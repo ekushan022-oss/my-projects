@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>SUDU MEGA STORE - Biggest in Lanka</title>
+<style>
+*{margin:0; padding:0; box-sizing:border-box; font-family: sans-serif;}
+nav{background:#111; color:white; padding:20px 40px; display:flex; justify-content:space-between; position:sticky; top:0; z-index:10}
+.hero{background: linear-gradient(90deg, #000, #333); color:white; padding:80px 40px; text-align:center}
+.hero h1{font-size:60px; color:#00ff88}
+.hero p{font-size:20px; margin:20px 0}
+.hero button{padding:15px 40px; background:#00ff88; border:none; font-size:18px; border-radius:30px; font-weight:bold; cursor:pointer}
+.cat{display:flex; gap:15px; justify-content:center; padding:30px; background:white; flex-wrap:wrap}
+.cat div{background:#f0f0f0; padding:10px 20px; border-radius:20px; cursor:pointer; transition:0.2s; user-select:none}
+.cat div.active{background:black; color:white; transform:scale(1.1)}
+.products{display:grid; grid-template-columns: repeat(4, 1fr); gap:25px; padding:40px; background:#f5f5f5}
+.card{background:white; border-radius:15px; overflow:hidden; box-shadow:0 4px 15px rgba(0,0,0,0.08); transition:0.3s}
+.card:hover{transform: translateY(-8px)}
+.card img{width:100%; height:220px; object-fit:cover}
+.card .info{padding:15px}
+.price{font-weight:bold; font-size:22px; margin:8px 0}
+.old{color:gray; text-decoration:line-through; font-size:14px; margin-left:10px}
+.buy{width:100%; padding:12px; background:black; color:white; border:none; border-radius:8px; margin-top:10px; cursor:pointer; font-weight:bold}
+.buy:hover{background:#00ff88; color:black}
+footer{background:black; color:gray; text-align:center; padding:30px; margin-top:40px}
+@media(max-width:900px){.products{grid-template-columns: repeat(2,1fr)} .hero h1{font-size:35px}}
+</style>
+</head>
+<body>
+
+<nav><b style="color:#00ff88; font-size:28px">SUDU.MEGA</b><div>CART 🛒 3</div></nav>
+
+<div class="hero">
+<h1>MEGA SALE 70% OFF</h1>
+<p>Sri Lanka's Biggest Online Store - Owned by Sudu Mahattaya</p>
+<button>SHOP NOW</button>
+</div>
+
+<div class="cat">
+<div class="active" onclick="filterItems('all', this)">🔥 All Items</div>
+<div onclick="filterItems('shoes', this)">👟 Shoes</div>
+<div onclick="filterItems('watches', this)">⌚ Watches</div>
+<div onclick="filterItems('electronics', this)">🎧 Electronics</div>
+<div onclick="filterItems('tshirts', this)">👕 T-Shirts</div>
+<div onclick="filterItems('bags', this)">👜 Bags</div>
+</div>
+
+<div class="products" id="productGrid">
+
+<div class="card" data-category="shoes"><img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff"><div class="info"><h3>Nike Air Max 270</h3><p>Men's Running</p><div class="price">Rs.25,900 <span class="old">Rs.40,000</span></div><button class="buy">ADD TO CART</button></div></div>
+
+<div class="card" data-category="shoes"><img src="https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa"><div class="info"><h3>Jordan Retro</h3><p>Limited Edition</p><div class="price">Rs.42,000</div><button class="buy">ADD TO CART</button></div></div>
+
+<div class="card" data-category="watches"><img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30"><div class="info"><h3>Apple Watch Ultra</h3><p>Smart Watch</p><div class="price">Rs.189,000</div><button class="buy">ADD TO CART</button></div></div>
+
+<div class="card" data-category="watches"><img src="https://images.unsplash.com/photo-1524805444973-bf390e09ebaa"><div class="info"><h3>Rolex Style Watch</h3><p>Luxury Watch</p><div class="price">Rs.65,000</div><button class="buy">ADD TO CART</button></div></div>
+
+<div class="card" data-category="electronics"><img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e"><div class="info"><h3>Sony WH-1000XM5</h3><p>Headphone</p><div class="price">Rs.85,500</div><button class="buy">ADD TO CART</button></div></div>
+
+<div class="card" data-category="electronics"><img src="https://images.unsplash.com/photo-1585386959984-a4155224a1ad"><div class="info"><h3>Gaming Headset</h3><p>RGB Light</p><div class="price">Rs.14,900</div><button class="buy">ADD TO CART</button></div></div>
+
+<div class="card" data-category="tshirts"><img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab"><div class="info"><h3>Black T-Shirt</h3><p>Oversized Fit</p><div class="price">Rs.3,500</div><button class="buy">ADD TO CART</button></div></div>
+
+<div class="card" data-category="tshirts"><img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea"><div class="info"><h3>Winter Jacket</h3><p>Premium</p><div class="price">Rs.15,500</div><button class="buy">ADD TO CART</button></div></div>
+
+<div class="card" data-category="bags"><img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa"><div class="info"><h3>Leather Bag</h3><p>Office Bag</p><div class="price">Rs.12,900</div><button class="buy">ADD TO CART</button></div></div>
+
+<div class="card" data-category="bags"><img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62"><div class="info"><h3>Travel Backpack</h3><p>Waterproof</p><div class="price">Rs.8,900</div><button class="buy">ADD TO CART</button></div></div>
+
+</div>
+
+<footer>© 2026 SUDU MEGA STORE - Built by Sudu Mahattaya | All Rights Reserved</footer>
+
+<script>
+function filterItems(category, element){
+  // button active karana eka
+  document.querySelectorAll('.cat div').forEach(btn => btn.classList.remove('active'));
+  element.classList.add('active');
+
+  // items filter karana eka
+  const allCards = document.querySelectorAll('.card');
+  allCards.forEach(card => {
+    if(category === 'all' || card.dataset.category === category){
+      card.style.display = 'block';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
+</script>
+
+</body>
+</html>
