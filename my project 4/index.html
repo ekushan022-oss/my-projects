@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Food Lanka</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; background: #f6f8f3; color: #203026; }
+    header { background: #176b45; color: white; padding: 22px; text-align: center; }
+    main { max-width: 1000px; margin: 25px auto; padding: 0 16px; }
+    .categories, .foods { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; }
+    button, .card { border: 0; border-radius: 12px; padding: 18px; background: white; box-shadow: 0 2px 8px #0001; }
+    button { cursor: pointer; font-size: 17px; color: #176b45; }
+    button:hover { background: #e6f3e9; }
+    .card h3 { margin-top: 0; }
+    .badge { display: inline-block; background: #e6f3e9; color: #176b45; padding: 5px 8px; border-radius: 6px; font-size: 13px; }
+    #results { margin-top: 24px; }
+    .note { color: #666; font-size: 14px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Food Lanka</h1>
+    <p>ශ්‍රී ලංකාවේ ආහාර නිෂ්පාදන සහ මිල ගණන්</p>
+  </header>
+
+  <main>
+    <h2>ආහාර වර්ගයක් තෝරන්න</h2>
+    <section class="categories" id="categories"></section>
+    <section id="results"></section>
+    <p class="note">* මිල සහ සහතික තොරතුරු උදාහරණ සඳහා පමණි. මිල වෙනස් විය හැකියි.</p>
+  </main>
+
+  <script>
+    // USD/LKR අනුපාතය demo අගයකි; live exchange rate-ээр යාවත්කාලීන කරන්න.
+    const usdRate = 300;
+
+    const foodData = {
+      "පලතුරු": [
+        { name: "අඹ", price: 450, unit: "කිලෝ 1", cert: "සහතික තොරතුරු විකුණුම්කරුගෙන් තහවුරු කරන්න" },
+        { name: "කෙසෙල්", price: 220, unit: "කිලෝ 1", cert: "සහතික තොරතුරු විකුණුම්කරුගෙන් තහවුරු කරන්න" }
+      ],
+      "එළවළු": [
+        { name: "කැරට්", price: 380, unit: "කිලෝ 1", cert: "සහතික තොරතුරු විකුණුම්කරුගෙන් තහවුරු කරන්න" },
+        { name: "තක්කාලි", price: 500, unit: "කිලෝ 1", cert: "සහතික තොරතුරු විකුණුම්කරුගෙන් තහවුරු කරන්න" }
+      ],
+      "ධාන්‍ය": [
+        { name: "රතු සහල්", price: 260, unit: "කිලෝ 1", cert: "සහතික තොරතුරු විකුණුම්කරුගෙන් තහවුරු කරන්න" },
+        { name: "කුරක්කන් පිටි", price: 700, unit: "කිලෝ 1", cert: "සහතික තොරතුරු විකුණුම්කරුගෙන් තහවුරු කරන්න" }
+      ]
+    };
+
+    const categoryBox = document.getElementById("categories");
+    const results = document.getElementById("results");
+
+    Object.keys(foodData).forEach(category => {
+      const button = document.createElement("button");
+      button.textContent = category;
+      button.onclick = () => showFoods(category);
+      categoryBox.appendChild(button);
+    });
+
+    function showFoods(category) {
+      results.innerHTML = `<h2>${category}</h2><div class="foods"></div>`;
+      const foodsBox = results.querySelector(".foods");
+
+      foodData[category].forEach(food => {
+        const usd = (food.price / usdRate).toFixed(2);
+        const card = document.createElement("article");
+        card.className = "card";
+        card.innerHTML = `
+          <h3>${food.name}</h3>
+          <p>මිල: රු. ${food.price.toLocaleString()} / ${food.unit}</p>
+          <p>USD: $${usd} / ${food.unit}</p>
+          <p><span class="badge">තත්ත්ව සහතික</span></p>
+          <p>${food.cert}</p>`;
+        foodsBox.appendChild(card);
+      });
+    }
+  </script>
+</body>
+</html>
