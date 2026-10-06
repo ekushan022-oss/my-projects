@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ekushan - My Projects</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0f0f0f;color:white;font-family:Arial;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;padding:20px}
+h1{font-size:48px;background:linear-gradient(90deg,#00ff88,#00aaff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:10px}
+.sub{color:#888;margin-bottom:40px;font-size:18px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px;width:100%;max-width:1000px}
+.card{background:#1e1e1e;border:1px solid #333;border-radius:22px;padding:32px;text-decoration:none;color:white;transition:0.3s}
+.card:hover{transform:translateY(-8px);border-color:#00ff88;box-shadow:0 15px 40px rgba(0,255,136,0.2)}
+.card h2{color:#00ff88;margin-bottom:12px}
+.card p{color:#aaa;font-size:14px;margin-bottom:18px}
+.btn{background:#00ff88;color:#000;padding:10px 22px;border-radius:30px;font-weight:bold;display:inline-block}
+</style>
+</head>
+<body>
+<h1>My Projects 🚀</h1>
+<p class="sub">Ekushan Portfolio</p>
+<div class="grid">
+<a class="card" href="./project1/"><h2>Project 01</h2><p>My First Website</p><span class="btn">View →</span></a>
+<a class="card" href="./project2/"><h2>Project 02</h2><p>My Second Website</p><span class="btn">View →</span></a>
+<a class="card" href="./project3/"><h2>Project 03</h2><p>My Third Website</p><span class="btn">View →</span></a>
+<a class="card" href="./project4/"><h2>🍔 Project 04 - Food Lanka</h2><p>Sri Lankan Food Delivery</p><span class="btn">View →</span></a>
+</div>
+</body>
+</html>
